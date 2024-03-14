@@ -6,10 +6,11 @@ namespace erice
     {
         static void Main(string[] args)
         {
+            ExcelReader excel = null;
             try
             {
-                Excel excel = new Excel(@"C:\Users\Korisnik\Desktop\c#\erice\erice\UKUPNI_BODOVI.xls", 1);
-                for(int i = 1; i <= 10; i++)
+                excel = new ExcelReader(@"C:\Users\Korisnik\Desktop\c#\erice\erice\UKUPNI_BODOVI.xls", 1);
+                for (int i = 1; i <= 10; i++)
                 {
                     Console.WriteLine(excel.ReadCell(i, 2));
                 }
@@ -17,6 +18,13 @@ namespace erice
             catch (Exception ex)
             {
                 Console.WriteLine("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                if (excel != null)
+                {
+                    excel.Close();
+                }
             }
         }
     }
