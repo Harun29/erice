@@ -6,13 +6,13 @@ namespace erice
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Unesite vrijednost chol:");
+            Console.WriteLine("Unesite vrijednost kolesterola:");
             double chol = double.Parse(Console.ReadLine());
 
-            Console.WriteLine("Unesite vrijednost age:");
+            Console.WriteLine("Unesite godine:");
             int age = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Unesite vrijednost sbp:");
+            Console.WriteLine("Unesite sbp vrijednost:");
             double sbp = double.Parse(Console.ReadLine());
 
             Console.WriteLine("Da li je pacijent dijabetičar? (true/false):");
@@ -50,7 +50,7 @@ namespace erice
                                     reading = 3;
                                     break;
                                 }
-                                else if ((sbp > cellIntValue) && reading == 3)
+                                else if ((sbp >= cellIntValue) && reading == 3)
                                 {
                                     row = i;
                                     start = 4;
