@@ -116,8 +116,44 @@ namespace erice
                         }
                     }
                 }
+
                 string result = excel.ReadCell(row, col);
-                Console.WriteLine(result);
+                int.TryParse(result, out int intResult);
+                string riskLevel = "";
+                string chances = "";
+
+                if (intResult < 5)
+                {
+                    riskLevel = "Low";
+                    chances = "Šanse za srčani udar su niske.";
+                }
+                else if (intResult >= 5 && intResult <= 9)
+                {
+                    riskLevel = "Mild";
+                    chances = "Šanse za srčani udar su niske, ali trebate obratiti pažnju.";
+                }
+                else if (intResult >= 10 && intResult <= 14)
+                {
+                    riskLevel = "Moderate";
+                    chances = "Postoji umjerena opasnost od srčanog udara.";
+                }
+                else if (intResult >= 15 && intResult <= 19)
+                {
+                    riskLevel = "Moderate-high";
+                    chances = "Postoje prilično visoke šanse za srčani udar.";
+                }
+                else if (intResult >= 20 && intResult <= 29)
+                {
+                    riskLevel = "High";
+                    chances = "Visoke šanse za srčani udar. Potrebno je hitno djelovanje.";
+                }
+                else
+                {
+                    riskLevel = "Very high";
+                    chances = "Veoma visoke šanse za srčani udar. Odmah potražite medicinsku pomoć.";
+                }
+                Console.WriteLine("Rezultat: " + result + " - " +riskLevel);
+                Console.WriteLine("Šanse: " + chances);
             }
 
             catch (Exception ex)
