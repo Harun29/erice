@@ -43,10 +43,17 @@ namespace erice
 
                             if (int.TryParse(cellValue, out int cellIntValue))
                             {
-                                if ((age > cellIntValue) && (cellIntValue != 0) && (reading == 1))
+                                if ((age >= cellIntValue) && (cellIntValue != 0) && (reading == 1))
                                 {
                                     start = i - 3;
                                     finish = i;
+                                    reading = 3;
+                                    break;
+                                }
+                                else if((age < 49) && (reading == 1))
+                                {
+                                    start = 20;
+                                    finish = 23;
                                     reading = 3;
                                     break;
                                 }
