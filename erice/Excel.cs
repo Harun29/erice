@@ -35,7 +35,7 @@ namespace erice
             wb.Close();
             excel.Quit();
 
-            // Release COM objects to avoid memory leaks
+            // Sprjecava memory leaks
             System.Runtime.InteropServices.Marshal.ReleaseComObject(ws);
             System.Runtime.InteropServices.Marshal.ReleaseComObject(wb);
             System.Runtime.InteropServices.Marshal.ReleaseComObject(excel);

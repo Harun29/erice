@@ -6,6 +6,10 @@ namespace erice
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Musko (M) / Zensko (Z)");
+            string spol = Console.ReadLine();
+            spol = spol.ToUpper();
+
             Console.WriteLine("Unesite vrijednost kolesterola:");
             double chol = double.Parse(Console.ReadLine());
 
@@ -28,10 +32,20 @@ namespace erice
             int start = 4;
             int finish = 24;
             int reading = 1;
+            int sheet;
+
+            if(spol == "M")
+            {
+                sheet = 1;
+            }
+            else
+            {
+                sheet = 2;
+            }
 
             try
             {
-                excel = new ExcelReader(@"C:\Users\Korisnik\Desktop\c#\erice\erice\Erice2.xlsx", 1);
+                excel = new ExcelReader(@"C:\Users\Korisnik\Desktop\c#\erice\erice\Erice2.xlsx", sheet);
                 bool breakCheck = false;
                 while (!breakCheck)
                 {
@@ -159,8 +173,16 @@ namespace erice
                     riskLevel = "Very high";
                     chances = "Veoma visoke šanse za srčani udar. Odmah potražite medicinsku pomoć.";
                 }
-                Console.WriteLine("Rezultat: " + result + " - " +riskLevel);
-                Console.WriteLine("Šanse: " + chances);
+                Console.WriteLine("-----------------------------------------------------------------------------------");
+                Console.WriteLine("Spol: " + spol + ", kolesterol: " + chol + ", Dob: " + age + ", sbp: " + sbp + ", diabeticar: " + diabetic + ", pusac: " + smoker);
+                Console.WriteLine("-----------------------------------------------------------------------------------");
+                Console.WriteLine("|  Rezultat: " + result + " - " +riskLevel);
+                Console.WriteLine("|  Šanse: " + chances);
+                Console.WriteLine("-----------------------------------------------------------------------------------");
+                Console.WriteLine($"Rezultat procitan iz Excel2 (sheet {sheet}) fajla");
+                Console.WriteLine("------------------------------------");
+                Console.WriteLine("Press any key to exit...");
+                Console.ReadLine();
             }
 
             catch (Exception ex)
