@@ -6,15 +6,34 @@ namespace erice
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Musko (M) / Zensko (Z)");
-            string spol = Console.ReadLine();
-            spol = spol.ToUpper();
 
+            string spol = "N";
+
+            while(spol != "M" && spol != "Z")
+            {
+                Console.WriteLine("Musko (M) / Zensko (Z)");
+                spol = Console.ReadLine();
+                spol = spol.ToUpper();
+                if(spol != "M" && spol != "Z")
+                {
+                    Console.WriteLine("Pogresan input. Unesite M (musko) ili Z (zensko)");
+                }
+            }
+            
             Console.WriteLine("Unesite vrijednost kolesterola:");
             double chol = double.Parse(Console.ReadLine());
 
-            Console.WriteLine("Unesite godine:");
-            int age = int.Parse(Console.ReadLine());
+            int age = 0;
+
+            while(age < 30)
+            {
+                Console.WriteLine("Unesite godine:");
+                age = int.Parse(Console.ReadLine());
+                if(age < 30)
+                {
+                    Console.WriteLine("Nemamo podataka za mladje od 30 godina!");
+                }
+            }
 
             Console.WriteLine("Unesite sbp vrijednost:");
             double sbp = double.Parse(Console.ReadLine());
@@ -36,11 +55,11 @@ namespace erice
 
             if(spol == "M")
             {
-                sheet = 1;
+                sheet = 2;
             }
             else
             {
-                sheet = 2;
+                sheet = 1;
             }
 
             try
@@ -64,7 +83,14 @@ namespace erice
                                     reading = 3;
                                     break;
                                 }
-                                else if((age < 49) && (reading == 1))
+                                else if((age < 49 && spol == "Z") && (reading == 1))
+                                {
+                                    start = 20;
+                                    finish = 23;
+                                    reading = 3;
+                                    break;
+                                }
+                                else if ((age < 39 && spol == "M") && (reading == 1))
                                 {
                                     start = 20;
                                     finish = 23;
